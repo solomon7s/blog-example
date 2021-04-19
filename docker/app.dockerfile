@@ -78,7 +78,7 @@ RUN composer install --optimize-autoloader
 RUN php artisan config:cache
 RUN php artisan l5-swagger:generate
 
-RUN chown -R www-data:www-data  /var/www
+RUN chown -R www-data:www-data ./storage
 
 # Change to non-root privilege
 USER www-data
