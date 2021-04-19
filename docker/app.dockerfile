@@ -78,7 +78,10 @@ RUN composer install --optimize-autoloader
 RUN php artisan config:cache
 RUN php artisan l5-swagger:generate
 
-RUN chown -R www-data:www-data ./storage/logs/ ./storage/framework/ ./storage/app
+RUN chown -R www-data:www-data  /var/www
+
+# Change to non-root privilege
+USER www-data
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000

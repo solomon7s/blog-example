@@ -19,18 +19,17 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
             $table->foreignUuid('post_id')
-                ->onDelete('cascade')
-                ->constrained('posts');
+                ->constrained('posts')
+                ->onDelete('cascade');
 
             $table->foreignUuid('created_by')
-                ->nullable()
-                ->onDelete('cascade')
-                ->constrained('users');
+                ->constrained('users')
+                ->onDelete('cascade');
 
             $table->foreignUuid('updated_by')
                 ->nullable()
-                ->onDelete('cascade')
-                ->constrained('users');
+                ->constrained('users')
+                ->onDelete('set null');
         });
     }
 
