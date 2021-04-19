@@ -73,12 +73,14 @@ WORKDIR /var/www
 COPY . /var/www
 COPY .env.example /var/www/.env
 
+# set www-data as owner of the project files
+RUN chown -R www-data:www-data .
+
 RUN composer install --optimize-autoloader
 
 RUN php artisan config:cache
 RUN php artisan l5-swagger:generate
 
-RUN chown -R www-data:www-data ./storage
 
 # Change to non-root privilege
 USER www-data
