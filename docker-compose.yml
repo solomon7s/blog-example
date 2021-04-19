@@ -1,0 +1,61 @@
+version: '3'
+services:
+  app:
+    container_name: "task_api"
+    build:
+      context: .
+      dockerfile: docker/app.dockerfile
+    networks:
+      - app_network
+    depends_on:
+      - mysql
+      - redis
+
+  nginx:
+    container_name: "task_server"
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/nginx.dockerfile
+    ports:
+      - "8084:80"
+    networks:
+      - app_network
+    depends_on:
+      - app
+
+  mysql:
+    container_name: "task_database"
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: task_db
+      MYSQL_ROOT_PASSWORD: random_root_pass
+      MYSQL_USER: task_user
+      MYSQL_PASSWORD: random_pass
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+    networks:
+      - app_network
+
+  redis:
+    container_name: "task_redis"
+    image: 'redis:6.2-alpine'
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/data'
+    networks:
+      - app_network
+
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local

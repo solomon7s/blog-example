@@ -1,0 +1,633 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Blog test API Project",
+        "description": "To be set Later",
+        "contact": {
+            "email": "slaiman.aris@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "description": "User login via email and password",
+                "operationId": "App\\Http\\Controllers\\Auth\\LoginController::__invoke",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UserLoginRequest"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Authentication completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthenticateDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "description": "Register new user",
+                "operationId": "App\\Http\\Controllers\\Auth\\RegisterController::__invoke",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UserCreateRequest"
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registration completed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/posts/{id}/comments": {
+            "get": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "get comments list for blog post by id ordered by latest",
+                "operationId": "App\\Http\\Controllers\\Blog\\CommentController::index",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number",
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "comments retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentPaginationDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/posts/{id}/comment": {
+            "post": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Create new comment about blog post",
+                "operationId": "App\\Http\\Controllers\\Blog\\CommentController::create",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/CommentRequest"
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comment created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/posts/{id}/comment/{cid}": {
+            "put": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Update user comment",
+                "operationId": "App\\Http\\Controllers\\Blog\\CommentController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cid",
+                        "in": "path",
+                        "description": "Comment id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/CommentRequest"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Comment updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommentDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Delete user comment",
+                "operationId": "App\\Http\\Controllers\\Blog\\CommentController::delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cid",
+                        "in": "path",
+                        "description": "Comment id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Comment deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateResponseDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "User login via email and password",
+                "operationId": "App\\Http\\Controllers\\Blog\\PostController::index",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number",
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "is_featured",
+                        "in": "query",
+                        "description": "is featured post {1, 0}",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "author",
+                        "in": "query",
+                        "description": "post author id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "sort posts, valid options {title, created_at, is_featured}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dir",
+                        "in": "query",
+                        "description": "Direction of post sort ASC or DESC",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Posts retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostPaginationDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Create new blog post",
+                "operationId": "App\\Http\\Controllers\\Blog\\PostController::create",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/BlogPostRequest"
+                },
+                "responses": {
+                    "201": {
+                        "description": "Post created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/posts/{id}": {
+            "put": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Update user blog post",
+                "operationId": "App\\Http\\Controllers\\Blog\\PostController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/BlogPostRequest"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Blog post updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Blog"
+                ],
+                "description": "Delete user post",
+                "operationId": "App\\Http\\Controllers\\Blog\\PostController::delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Post id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blog post deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateResponseDTO"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AuthenticateDTO": {
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserDTO"
+                    }
+                },
+                "type": "object"
+            },
+            "UserDTO": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentDTO": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "body": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserDTO"
+                    }
+                },
+                "type": "object"
+            },
+            "CommentPaginationDTO": {
+                "properties": {
+                    "total": {
+                        "type": "int"
+                    },
+                    "current_page": {
+                        "type": "int"
+                    },
+                    "last_page": {
+                        "type": "int"
+                    },
+                    "per_page": {
+                        "type": "int"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CommentDTO"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PostDTO": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "is_featured": {
+                        "type": "boolean"
+                    },
+                    "comments_count": {
+                        "type": "int"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserDTO"
+                    }
+                },
+                "type": "object"
+            },
+            "PostPaginationDTO": {
+                "properties": {
+                    "total": {
+                        "type": "int"
+                    },
+                    "current_page": {
+                        "type": "int"
+                    },
+                    "last_page": {
+                        "type": "int"
+                    },
+                    "per_page": {
+                        "type": "int"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PostDTO"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateResponseDTO": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "requestBodies": {
+            "UserCreateRequest": {
+                "description": "User object that needs to be registered into the system",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "description": "Class UserCreateRequest",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "Class UserCreateRequest",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Class UserCreateRequest",
+                                    "type": "string",
+                                    "format": "email"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UserLoginRequest": {
+                "description": "User object that needs to be registered into the system",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "username": {
+                                    "description": "Class UserCreateRequest",
+                                    "type": "string",
+                                    "format": "email"
+                                },
+                                "password": {
+                                    "description": "Class UserCreateRequest",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "BlogPostRequest": {
+                "description": "Blog post information to add or update",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "Class BlogPostRequest",
+                                    "type": "string"
+                                },
+                                "is_featured": {
+                                    "description": "Class BlogPostRequest",
+                                    "type": "boolean"
+                                },
+                                "content": {
+                                    "description": "Class BlogPostRequest",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "CommentRequest": {
+                "description": "Comment body to add or update",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "body": {
+                                    "description": "Class CommentRequest",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

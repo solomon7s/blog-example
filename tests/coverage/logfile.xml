@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="31" assertions="195" errors="0" warnings="0" failures="0" skipped="0" time="16.002210">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.030438">
+      <testsuite name="Tests\Unit\ExampleTest" file="/var/www/tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.030438">
+        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="/var/www/tests/Unit/ExampleTest.php" line="14" assertions="1" time="0.030438"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="30" assertions="194" errors="0" warnings="0" failures="0" skipped="0" time="15.971772">
+      <testsuite name="Tests\Feature\LoginTest" file="/var/www/tests/Feature/AccountTests/LoginTest.php" tests="2" assertions="19" errors="0" warnings="0" failures="0" skipped="0" time="3.365156">
+        <testcase name="test_can_login" class="Tests\Feature\LoginTest" classname="Tests.Feature.LoginTest" file="/var/www/tests/Feature/AccountTests/LoginTest.php" line="22" assertions="11" time="3.028132"/>
+        <testcase name="test_cannot_login_because_wrong_credentials" class="Tests\Feature\LoginTest" classname="Tests.Feature.LoginTest" file="/var/www/tests/Feature/AccountTests/LoginTest.php" line="51" assertions="8" time="0.337023"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\AccountTests\RegisterTest" file="/var/www/tests/Feature/AccountTests/RegisterTest.php" tests="3" assertions="23" errors="0" warnings="0" failures="0" skipped="0" time="0.918081">
+        <testcase name="test_can_register" class="Tests\Feature\AccountTests\RegisterTest" classname="Tests.Feature.AccountTests.RegisterTest" file="/var/www/tests/Feature/AccountTests/RegisterTest.php" line="22" assertions="9" time="0.301312"/>
+        <testcase name="test_cannot_register_because_validation_error" class="Tests\Feature\AccountTests\RegisterTest" classname="Tests.Feature.AccountTests.RegisterTest" file="/var/www/tests/Feature/AccountTests/RegisterTest.php" line="45" assertions="6" time="0.291743"/>
+        <testcase name="test_cannot_register_because_email_exists" class="Tests\Feature\AccountTests\RegisterTest" classname="Tests.Feature.AccountTests.RegisterTest" file="/var/www/tests/Feature/AccountTests/RegisterTest.php" line="64" assertions="8" time="0.325026"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\CreateCommentsTest" file="/var/www/tests/Feature/BlogTests/CreateCommentsTest.php" tests="4" assertions="24" errors="0" warnings="0" failures="0" skipped="0" time="3.006361">
+        <testcase name="test_can_create_comment_if_authenticated" class="Tests\Feature\BlogTests\CreateCommentsTest" classname="Tests.Feature.BlogTests.CreateCommentsTest" file="/var/www/tests/Feature/BlogTests/CreateCommentsTest.php" line="25" assertions="10" time="1.876808"/>
+        <testcase name="test_cannot_create_comment_because_validation_error" class="Tests\Feature\BlogTests\CreateCommentsTest" classname="Tests.Feature.BlogTests.CreateCommentsTest" file="/var/www/tests/Feature/BlogTests/CreateCommentsTest.php" line="48" assertions="6" time="0.390851"/>
+        <testcase name="test_cannot_create_comment_if_not_authenticated" class="Tests\Feature\BlogTests\CreateCommentsTest" classname="Tests.Feature.BlogTests.CreateCommentsTest" file="/var/www/tests/Feature/BlogTests/CreateCommentsTest.php" line="65" assertions="4" time="0.311835"/>
+        <testcase name="test_cannot_create_comment_if_post_not_exists" class="Tests\Feature\BlogTests\CreateCommentsTest" classname="Tests.Feature.BlogTests.CreateCommentsTest" file="/var/www/tests/Feature/BlogTests/CreateCommentsTest.php" line="83" assertions="4" time="0.426868"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\CreatePostsTest" file="/var/www/tests/Feature/BlogTests/CreatePostsTest.php" tests="3" assertions="26" errors="0" warnings="0" failures="0" skipped="0" time="0.931375">
+        <testcase name="test_can_create_post_if_authenticated" class="Tests\Feature\BlogTests\CreatePostsTest" classname="Tests.Feature.BlogTests.CreatePostsTest" file="/var/www/tests/Feature/BlogTests/CreatePostsTest.php" line="22" assertions="16" time="0.373570"/>
+        <testcase name="test_cannot_create_post_because_validation_error" class="Tests\Feature\BlogTests\CreatePostsTest" classname="Tests.Feature.BlogTests.CreatePostsTest" file="/var/www/tests/Feature/BlogTests/CreatePostsTest.php" line="48" assertions="6" time="0.333010"/>
+        <testcase name="test_cannot_create_post_if_not_authenticated" class="Tests\Feature\BlogTests\CreatePostsTest" classname="Tests.Feature.BlogTests.CreatePostsTest" file="/var/www/tests/Feature/BlogTests/CreatePostsTest.php" line="64" assertions="4" time="0.224796"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\DeleteCommentsTest" file="/var/www/tests/Feature/BlogTests/DeleteCommentsTest.php" tests="4" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="1.716646">
+        <testcase name="test_can_delete_comment_if_authenticated" class="Tests\Feature\BlogTests\DeleteCommentsTest" classname="Tests.Feature.BlogTests.DeleteCommentsTest" file="/var/www/tests/Feature/BlogTests/DeleteCommentsTest.php" line="25" assertions="6" time="0.413829"/>
+        <testcase name="test_cannot_delete_comment_because_not_exists" class="Tests\Feature\BlogTests\DeleteCommentsTest" classname="Tests.Feature.BlogTests.DeleteCommentsTest" file="/var/www/tests/Feature/BlogTests/DeleteCommentsTest.php" line="49" assertions="4" time="0.415110"/>
+        <testcase name="test_cannot_delete_comment_because_not_owner" class="Tests\Feature\BlogTests\DeleteCommentsTest" classname="Tests.Feature.BlogTests.DeleteCommentsTest" file="/var/www/tests/Feature/BlogTests/DeleteCommentsTest.php" line="70" assertions="4" time="0.492384"/>
+        <testcase name="test_cannot_delete_comment_if_not_authenticated" class="Tests\Feature\BlogTests\DeleteCommentsTest" classname="Tests.Feature.BlogTests.DeleteCommentsTest" file="/var/www/tests/Feature/BlogTests/DeleteCommentsTest.php" line="90" assertions="4" time="0.395324"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\DeletePostsTest" file="/var/www/tests/Feature/BlogTests/DeletePostsTest.php" tests="4" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="1.607683">
+        <testcase name="test_can_delete_post_if_authenticated" class="Tests\Feature\BlogTests\DeletePostsTest" classname="Tests.Feature.BlogTests.DeletePostsTest" file="/var/www/tests/Feature/BlogTests/DeletePostsTest.php" line="24" assertions="6" time="0.415324"/>
+        <testcase name="test_cannot_delete_post_because_not_exists" class="Tests\Feature\BlogTests\DeletePostsTest" classname="Tests.Feature.BlogTests.DeletePostsTest" file="/var/www/tests/Feature/BlogTests/DeletePostsTest.php" line="44" assertions="4" time="0.383307"/>
+        <testcase name="test_cannot_delete_post_because_not_owner" class="Tests\Feature\BlogTests\DeletePostsTest" classname="Tests.Feature.BlogTests.DeletePostsTest" file="/var/www/tests/Feature/BlogTests/DeletePostsTest.php" line="60" assertions="4" time="0.409523"/>
+        <testcase name="test_cannot_delete_post_if_not_authenticated" class="Tests\Feature\BlogTests\DeletePostsTest" classname="Tests.Feature.BlogTests.DeletePostsTest" file="/var/www/tests/Feature/BlogTests/DeletePostsTest.php" line="77" assertions="4" time="0.399529"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" tests="5" assertions="30" errors="0" warnings="0" failures="0" skipped="0" time="2.392098">
+        <testcase name="test_can_update_comment_if_authenticated" class="Tests\Feature\BlogTests\UpdateCommentsTest" classname="Tests.Feature.BlogTests.UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" line="26" assertions="12" time="0.584786"/>
+        <testcase name="test_cannot_update_comment_because_validation_error" class="Tests\Feature\BlogTests\UpdateCommentsTest" classname="Tests.Feature.BlogTests.UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" line="53" assertions="6" time="0.420948"/>
+        <testcase name="test_cannot_update_comment_because_not_exists" class="Tests\Feature\BlogTests\UpdateCommentsTest" classname="Tests.Feature.BlogTests.UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" line="74" assertions="4" time="0.512567"/>
+        <testcase name="test_cannot_update_comment_because_not_owner" class="Tests\Feature\BlogTests\UpdateCommentsTest" classname="Tests.Feature.BlogTests.UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" line="97" assertions="4" time="0.478299"/>
+        <testcase name="test_cannot_update_comment_if_not_authenticated" class="Tests\Feature\BlogTests\UpdateCommentsTest" classname="Tests.Feature.BlogTests.UpdateCommentsTest" file="/var/www/tests/Feature/BlogTests/UpdateCommentsTest.php" line="119" assertions="4" time="0.395497"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\BlogTests\UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" tests="5" assertions="36" errors="0" warnings="0" failures="0" skipped="0" time="2.034372">
+        <testcase name="test_can_update_post_if_authenticated" class="Tests\Feature\BlogTests\UpdatePostsTest" classname="Tests.Feature.BlogTests.UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" line="24" assertions="18" time="0.442721"/>
+        <testcase name="test_cannot_update_post_because_validation_error" class="Tests\Feature\BlogTests\UpdatePostsTest" classname="Tests.Feature.BlogTests.UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" line="52" assertions="6" time="0.385227"/>
+        <testcase name="test_cannot_update_post_because_not_exists" class="Tests\Feature\BlogTests\UpdatePostsTest" classname="Tests.Feature.BlogTests.UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" line="69" assertions="4" time="0.417721"/>
+        <testcase name="test_cannot_update_post_because_not_owner" class="Tests\Feature\BlogTests\UpdatePostsTest" classname="Tests.Feature.BlogTests.UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" line="90" assertions="4" time="0.487731"/>
+        <testcase name="test_cannot_update_post_if_not_authenticated" class="Tests\Feature\BlogTests\UpdatePostsTest" classname="Tests.Feature.BlogTests.UpdatePostsTest" file="/var/www/tests/Feature/BlogTests/UpdatePostsTest.php" line="110" assertions="4" time="0.300972"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
